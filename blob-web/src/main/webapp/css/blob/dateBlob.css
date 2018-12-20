@@ -1,0 +1,56 @@
+.date-blob-container{
+	width: 100%;
+	max-width: 900px;
+	height: auto;
+	min-height: 300px;
+	margin: 80px auto 0;
+}
+.date-blob-title{
+	padding: 0 15px;
+}
+.date-blob-title>span{
+	color: #008000;
+	display: inline-block;
+	font-size: 12px;
+}
+.date-blob-title>h2{
+	color: #5f5f5f;
+	display: inline-block;
+	font-size: 16px;
+}
+.date-blob-list{
+	width: 100%;
+	max-width: 900px;
+	margin-top: 16px;
+}
+.date-blob-item{
+	height: auto;
+	min-height: 100px;
+	border-radius: 4px;
+	background-color: #FFFFFF;
+	padding: 20px 20px 0;
+	margin-bottom: 30px;
+	box-shadow: 0 1px 4px rgba(0,0,0,.04);
+	transition: 0.5s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.date-blob-item:hover{
+	transform: scale(1.03);
+}
+.item-title{
+	margin-top: 4px;
+	font-size: 14px;
+}
+.item-title>a{
+	color: #313131;
+}
+.item-title>a:hover{
+	color: #313131;
+}
+.item-meta{
+	margin-top: 14px;
+	font-size: 12px;
+	color: #5f5f5f;
+}

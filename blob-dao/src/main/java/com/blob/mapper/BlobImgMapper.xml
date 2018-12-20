@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blob.mapper.BlobImgMapper" >
+  <resultMap id="BaseResultMap" type="com.blob.entity.BlobImg" >
+    <constructor >
+      <idArg column="img_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="img_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blob_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    img_id, img_url, blob_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from blob_img
+    where img_id = #{imgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blob_img
+    where img_id = #{imgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blob.entity.BlobImg" >
+    insert into blob_img (img_id, img_url, blob_id
+      )
+    values (#{imgId,jdbcType=BIGINT}, #{imgUrl,jdbcType=VARCHAR}, #{blobId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blob.entity.BlobImg" >
+    insert into blob_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        img_id,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="blobId != null" >
+        blob_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        #{imgId,jdbcType=BIGINT},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="blobId != null" >
+        #{blobId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blob.entity.BlobImg" >
+    update blob_img
+    <set >
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="blobId != null" >
+        blob_id = #{blobId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blob.entity.BlobImg" >
+    update blob_img
+    set img_url = #{imgUrl,jdbcType=VARCHAR},
+      blob_id = #{blobId,jdbcType=BIGINT}
+    where img_id = #{imgId,jdbcType=BIGINT}
+  </update>
+</mapper>

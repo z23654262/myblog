@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blob.mapper.UserFriendMapper" >
+  <resultMap id="BaseResultMap" type="com.blob.entity.UserFriend" >
+    <constructor >
+      <idArg column="user_friend_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="friend_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_friend_id, user_id, friend_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_friend
+    where user_friend_id = #{userFriendId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_friend
+    where user_friend_id = #{userFriendId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blob.entity.UserFriend" >
+    insert into user_friend (user_friend_id, user_id, friend_id
+      )
+    values (#{userFriendId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{friendId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blob.entity.UserFriend" >
+    insert into user_friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userFriendId != null" >
+        user_friend_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="friendId != null" >
+        friend_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userFriendId != null" >
+        #{userFriendId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="friendId != null" >
+        #{friendId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blob.entity.UserFriend" >
+    update user_friend
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="friendId != null" >
+        friend_id = #{friendId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_friend_id = #{userFriendId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blob.entity.UserFriend" >
+    update user_friend
+    set user_id = #{userId,jdbcType=BIGINT},
+      friend_id = #{friendId,jdbcType=BIGINT}
+    where user_friend_id = #{userFriendId,jdbcType=BIGINT}
+  </update>
+</mapper>

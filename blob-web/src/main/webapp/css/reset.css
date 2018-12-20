@@ -1,0 +1,244 @@
+/*设置字符*/
+
+a {
+	font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+}
+a:hover{
+	text-decoration: none !important;
+}
+a:focus{
+	text-decoration: none !important;
+}
+ul,
+ol{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+select,
+textarea,
+input{
+	border: none;
+	outline: none;
+}
+/*设置字符*/
+
+
+/*左右浮动*/
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clearfix {
+	content: " ";
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+
+
+/*左右浮动*/
+
+
+/*系统组件样式*/
+
+
+/*定义滚动条*/
+
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb {
+	background-color: #777;
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 16px;
+	background-color: #F5F5F5;
+}
+
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+::-webkit-scrollbar-track {
+	background-color: #F5F5F5;
+}
+
+
+/*选中文字样式*/
+
+::selection {
+    background:#d3d3d3; 
+    color:#555;
+
+}
+
+::-moz-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+::-webkit-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+/*指定文本选中颜色*/
+.maroon::selection {
+    background:maroon; 
+    color:#fff;
+}
+
+.maroon::-moz-selection {
+    background:maroon; 
+    color:#fff;
+}
+
+.maroon::-webkit-selection {
+    background:maroon; 
+    color:#fff;
+}
+
+/*系统组件样式*/
+
+
+/*动画效果*/
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	/*初始状态 透明度为0*/
+	100% {
+		opacity: 1;
+	}
+	/*结束状态 透明度为1*/
+}
+
+@-webkit-keyframes fade-in {
+	/*针对webkit内核*/
+	0% {
+		opacity: 0;
+	}
+	/*初始状态 透明度为0*/
+	100% {
+		opacity: 1;
+	}
+	/*结束状态 透明度为1*/
+}
+
+@keyframes move-in {
+	0% {
+		-webkit-transform:translateY(14px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform:translateY(0px);
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes move-in {
+	/*针对webkit内核*/
+	0% {
+		-webkit-transform:translateY(14px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform:translateY(0px);
+		opacity: 1;
+	}
+}
+
+.movein {
+	animation: move-in;
+	/*动画名称*/
+	animation-duration: 0.8s;
+	/*动画持续时间*/
+	-webkit-animation: move-in 0.8s;
+	/*针对webkit内核*/
+}
+
+.webkit {
+	-webkit-transition-duration: 0.5s;
+	-webkit-transition-timing-function: ease;
+}
+
+
+/* Slide transitions */
+
+.slideUp {
+	/* -webkit-transform:translateY(-100px);
+	transform:translateY(-100px);
+	*/
+	-webkit-transform: translateY(-100px);
+	-ms-transform: translateY(-100px);
+	-o-transform: translateY(-100px);
+	transform: translateY(-100px);
+	/*transition:transform .5s ease-out;
+	*/
+	-webkit-transition: transform .5s ease-out;
+	-o-transition: transform .5s ease-out;
+	transition: transform .5s ease-out;
+}
+
+.slideDown {
+	/*-webkit-transform:translateY(0);
+	transform:translateY(0);
+	*/
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+	/*transition:transform .5s ease-out;
+	*/
+	-webkit-transition: transform .5s ease-out;
+	-o-transition: transform .5s ease-out;
+	transition: transform .5s ease-out;
+}
+
+
+/*动画效果*/
+
+
+/*通用样式*/
+
+.cursor {
+	cursor: pointer;
+}
+
+.block {
+	display: block;
+}
+.hide{
+	display: none;
+}
+.inline-block{
+	display: inline-block;
+}
+.overflow{
+	overflow: hidden;
+}
+.img-vague{
+	filter: blur(4px);
+	transform: scale(1.2);
+}
+.hide{
+	opacity: 0 !important;
+}
+.half-show{
+	opacity: 0.2 !important;
+}
+.show{
+	opacity: 1 !important;
+}
+/*通用样式*/

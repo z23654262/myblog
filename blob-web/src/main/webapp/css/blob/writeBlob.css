@@ -1,0 +1,48 @@
+.blob-write{
+	width: 100%;
+	height: auto;
+	max-width: 1000px;
+	min-height: 800px;
+	margin: 80px auto 0;
+	padding:0 15px 0;
+}
+.blob-meta{
+	display: block;
+	width: 100%;
+	max-width: 900px;
+	min-height: 60px;
+	margin: 0 auto;
+}
+.blob-meta-title{
+	float: left;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+.blob-meta-text{
+	float: right;
+	width: 84%;
+	height: 34px;
+	margin-top: 13px;
+	border: 1px solid #e1e1e1;
+	font-size: 14px;
+	padding-left: 10px;
+}
+.blob-meta-btn{
+	display: block;
+	margin: 30px auto 0;
+	width: 120px;
+	height: 40px;
+	border-radius: 4px;
+	color: #FFFFFF;
+	background-color: #80ef64;
+}
+.blob-detail{
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+.blob-detail>textarea{
+	width: 100%;
+	resize: none;
+	min-height: 400px;
+}

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blob.mapper.BlobMapper" >
+  <resultMap id="BaseResultMap" type="com.blob.entity.Blob" >
+    <constructor >
+      <idArg column="blob_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="blob_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blob_summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blob_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="blob_category_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="istop" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.blob.entity.Blob" >
+    <constructor >
+      <idArg column="blob_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="blob_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blob_summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="blob_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="blob_category_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="istop" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="blob_detail" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="IndexBlobResultMap" type="blob">
+    <id property="blobId" column="blob_id" ></id>
+    <result property="blobTitle" column="blob_title" ></result>
+    <result property="blobSummary" column="blob_summary" ></result>
+    <result  property="blobTime" column="blob_time"></result>
+    <association property="category" javaType="category">
+      <id property="categoryId" column="category_id"></id>
+      <result property="categoryDetail" column="category_detail"></result>
+    </association>
+  </resultMap>
+  <resultMap id="IndexRecommendBlobResultMap" type="blob">
+    <id property="blobId" column="blob_id" ></id>
+    <result property="blobTitle" column="blob_title" ></result>
+    <result property="blobSummary" column="blob_summary" ></result>
+    <result  property="blobTime" column="blob_time"></result>
+    <result  property="blobAccess" column="blob_access"></result>
+    <association property="category" javaType="category">
+      <id property="categoryId" column="category_id"></id>
+      <result property="categoryDetail" column="category_detail"></result>
+    </association>
+  </resultMap>
+  <resultMap id="BlobDetailResult" type="blob">
+    <id property="blobId" column="blob_id" ></id>
+    <result property="blobTitle" column="blob_title" ></result>
+    <result property="blobSummary" column="blob_summary" ></result>
+    <result  property="blobTime" column="blob_time"></result>
+    <result  property="blobAccess" column="blob_access"></result>
+    <result  property="blobDetail" column="blob_detail"></result>
+    <association property="category" javaType="category">
+      <id property="categoryId" column="category_id"></id>
+      <result property="categoryDetail" column="category_detail"></result>
+    </association>
+    <collection property="blobTagList" ofType="blobTag">
+      <id property="tagId" column="tag_id"></id>
+      <result property="tagDetail" column="tag_detail"></result>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    blob_id, blob_title, blob_summary, blob_time, blob_category_id, istop, user_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    blob_detail
+  </sql>
+  <select id="selectBlobDetailById" parameterType="long" resultMap="BlobDetailResult">
+    SELECT
+    `blob`.blob_id,
+    `blob`.blob_title,
+    `blob`.blob_summary,
+    `blob`.blob_access,
+    `blob`.blob_detail,
+    `blob`.blob_time,
+    `blob`.blob_category_id,
+    `blob`.istop,
+    `blob`.user_id,
+    category.category_id,
+    category.category_detail,
+    tag.tag_id,
+    tag.blob_id,
+    tag.tag_detail
+    FROM
+    `blob`
+    LEFT JOIN category ON blob.blob_category_id = category.category_id
+    LEFT JOIN tag ON tag.blob_id = blob.blob_id
+    WHERE blob.blob_id = #{id}
+  </select>
+  <select id="selectIndexRecommendBlobsByName" parameterType="string" resultMap="IndexRecommendBlobResultMap">
+    SELECT
+    `blob`.blob_id,
+    `blob`.blob_summary,
+    `blob`.blob_title,
+    `blob`.blob_time,
+    `blob`.blob_access,
+    `blob`.blob_category_id,
+    category.category_id,
+    category.category_detail
+    FROM
+    `blob`
+    INNER JOIN category ON blob.blob_category_id = category.category_id
+    AND
+    `blob`.blob_title LIKE #{name}
+    AND `blob`.blob_access != 0
+    ORDER BY `blob`.blob_access DESC , `blob`.blob_time DESC
+  </select>
+  <select id="selectIndexBlobsByName" parameterType="string" resultMap="IndexBlobResultMap">
+    SELECT
+    `blob`.blob_id,
+    `blob`.blob_summary,
+    `blob`.blob_title,
+    `blob`.blob_time,
+    `blob`.blob_category_id,
+    category.category_id,
+    category.category_detail
+    FROM
+    `blob`
+    INNER JOIN category ON blob.blob_category_id = category.category_id
+    AND
+    `blob`.blob_title LIKE #{name}
+    ORDER BY blob_time DESC
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `blob`
+    where blob_id = #{blobId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blob
+    where blob_id = #{blobId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blob.entity.Blob" >
+    insert into blob (blob_id, blob_title, blob_summary, 
+      blob_time, blob_category_id, istop, 
+      user_id, blob_detail)
+    values (#{blobId,jdbcType=BIGINT}, #{blobTitle,jdbcType=VARCHAR}, #{blobSummary,jdbcType=VARCHAR}, 
+      #{blobTime,jdbcType=TIMESTAMP}, #{blobCategoryId,jdbcType=BIGINT}, #{istop,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{blobDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blob.entity.Blob" >
+    insert into blob
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blobId != null" >
+        blob_id,
+      </if>
+      <if test="blobTitle != null" >
+        blob_title,
+      </if>
+      <if test="blobSummary != null" >
+        blob_summary,
+      </if>
+      <if test="blobTime != null" >
+        blob_time,
+      </if>
+      <if test="blobCategoryId != null" >
+        blob_category_id,
+      </if>
+      <if test="istop != null" >
+        istop,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="blobDetail != null" >
+        blob_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blobId != null" >
+        #{blobId,jdbcType=BIGINT},
+      </if>
+      <if test="blobTitle != null" >
+        #{blobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blobSummary != null" >
+        #{blobSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="blobTime != null" >
+        #{blobTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blobCategoryId != null" >
+        #{blobCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="istop != null" >
+        #{istop,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="blobDetail != null" >
+        #{blobDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="blobAccessIncrease" parameterType="long">
+    update `blob`
+    set `blob`.blob_access = `blob`.blob_access + 1
+    where `blob`.blob_id = #{id}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blob.entity.Blob" >
+    update blob
+    <set >
+      <if test="blobTitle != null" >
+        blob_title = #{blobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blobSummary != null" >
+        blob_summary = #{blobSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="blobTime != null" >
+        blob_time = #{blobTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blobCategoryId != null" >
+        blob_category_id = #{blobCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="istop != null" >
+        istop = #{istop,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="blobDetail != null" >
+        blob_detail = #{blobDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blob_id = #{blobId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blob.entity.Blob" >
+    update blob
+    set blob_title = #{blobTitle,jdbcType=VARCHAR},
+      blob_summary = #{blobSummary,jdbcType=VARCHAR},
+      blob_time = #{blobTime,jdbcType=TIMESTAMP},
+      blob_category_id = #{blobCategoryId,jdbcType=BIGINT},
+      istop = #{istop,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      blob_detail = #{blobDetail,jdbcType=LONGVARCHAR}
+    where blob_id = #{blobId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blob.entity.Blob" >
+    update blob
+    set blob_title = #{blobTitle,jdbcType=VARCHAR},
+      blob_summary = #{blobSummary,jdbcType=VARCHAR},
+      blob_time = #{blobTime,jdbcType=TIMESTAMP},
+      blob_category_id = #{blobCategoryId,jdbcType=BIGINT},
+      istop = #{istop,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT}
+    where blob_id = #{blobId,jdbcType=BIGINT}
+  </update>
+</mapper>
