@@ -30,6 +30,26 @@ public class Blob {
 
     private List<BlobTag> blobTagList;
 
+    private BlobByDate blobByDate;
+
+    private List<BlobByDate> blobByDates;
+
+    public List<BlobByDate> getBlobByDates() {
+        return blobByDates;
+    }
+
+    public void setBlobByDates(List<BlobByDate> blobByDates) {
+        this.blobByDates = blobByDates;
+    }
+
+    public BlobByDate getBlobByDate() {
+        return blobByDate;
+    }
+
+    public void setBlobByDate(BlobByDate blobByDate) {
+        this.blobByDate = blobByDate;
+    }
+
     public List<BlobTag> getBlobTagList() {
         return blobTagList;
     }

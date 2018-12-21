@@ -91,4 +91,22 @@ public interface BlobService {
     * @return java.util.List<com.blob.entity.BlobByDate>
     **/
     public List<BlobByDate> getBlobsByDate();
+
+    /***
+     * @Author zhangshuaifei
+     * @Description 查询每一个月的博客数量
+     * @Date 16:36 2018-12-20
+     * @Param []
+     * @return java.util.List<com.blob.entity.BlobByDate>
+     **/
+    public List<BlobByDate> getBlobsCountByDate();
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 按一年的某一月来获取该月份内所有博客信息
+    * @Date 15:41 2018-12-20
+    * @Param [date]
+    * @return java.util.List<com.blob.entity.Blob>
+    **/
+    public BlobByDate getBlobsByYearAndMonth(String time);
 }

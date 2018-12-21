@@ -124,4 +124,6 @@ public class BlobController {
     public List<BlobByDate> getArchivesByDate(){
         return blobService.getBlobsByDate();
     }
+
+
 }

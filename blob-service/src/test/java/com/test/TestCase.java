@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,49 +45,19 @@ public class TestCase {
 
     @Test
     public void test3(){
-        List<Blob> blobList = blobMapper.selectIndexBlobsByName("%%");
-
-        List<BlobByDate> result = new ArrayList<BlobByDate>();
-
-        int resultCount = 0;
-
-        Blob blob1 = blobList.get(0);
-
-        if(blob1!=null){
-            /*将第一个博客的信息填充到第一个博客时间分类实体内*/
-            BlobByDate blobByDate = new BlobByDate();
-            blobByDate.setBlobDate(blob1.getBlobTime());
-            blobByDate.setBlobList(new ArrayList<Blob>());
-            blobByDate.getBlobList().add(blob1);
-            result.add(blobByDate);
-
-            /*从1开始遍历将博客列表填充到博客时间分类实体内*/
-            for (int i=1;i<blobList.size();i++) {
-
-                /*获取当前按时间分类的博客时间分类实体*/
-                BlobByDate blobByDateTemp = result.get(resultCount);
-
-                /*获取当前的要加入列表的博客实体*/
-                Blob blobTemp = blobList.get(i);
-
-                /*判断要添加的博客实体是否跟博客时间分类实体里面的最新的相等*/
-                /*相等继续添加*/
-                if(DateUtil.isYearMonthSame(blobByDateTemp.getBlobDate(),blobTemp.getBlobTime())){
-
-                    blobByDateTemp.getBlobList().add(blobTemp);
-
-                }
-                /*不相等新生成一个博客时间分类实体*/
-                else{
-                    resultCount++;
-                    BlobByDate blobByDateAnother = new BlobByDate();
-                    blobByDateAnother.setBlobDate(blobTemp.getBlobTime());
-                    blobByDateAnother.setBlobList(new ArrayList<Blob>());
-                    blobByDateAnother.getBlobList().add(blobTemp);
-                    result.add(blobByDateAnother);
-                }
-            }
+        BlobByDate blobsByYearAndMonth = blobService.getBlobsByYearAndMonth("2018-10");
+        System.out.println(blobsByYearAndMonth.getBlobDate());
+        for (Blob blob:blobsByYearAndMonth.getBlobList()) {
+            System.out.println(blob);
         }
-        System.out.println(result.size());
     }
+
+    @Test
+    public void test4(){
+        List<BlobByDate> blobsCountByDate = blobService.getBlobsCountByDate();
+        for (BlobByDate blobByDate:blobsCountByDate) {
+            System.out.println(blobByDate);
+        }
+    }
+
 }

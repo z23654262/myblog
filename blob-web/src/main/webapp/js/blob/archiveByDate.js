@@ -11,6 +11,8 @@ function initArchiveBlobByDate() {
         type: "post",
         url: "/" + contextPath + "/getArchivesBlobByDate",
         success: function (result) {
+            /*alert(result[0].blobDate.split("年")[0]);
+            alert(result[0].blobDate.split("年")[1].split("月")[0]);*/
             for (var i = 0; i < result.length; i++) {
                 var archive_title = $("<div class=\"date-blob-title movein\">\n" +
                     "        <span class=\"glyphicon glyphicon-pushpin\"></span>\n" +

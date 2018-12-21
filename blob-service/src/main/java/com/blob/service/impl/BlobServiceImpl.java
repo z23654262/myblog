@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -157,5 +158,24 @@ public class BlobServiceImpl implements BlobService {
             }
         }
         return result;
+    }
+
+    public List<BlobByDate> getBlobsCountByDate(){
+        Blob blob = blobMapper.selectBlobsCountByDate();
+        return blob.getBlobByDates();
+    }
+
+
+    @Override
+    public BlobByDate getBlobsByYearAndMonth(String time) {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM");
+        Date date = null;
+        try{
+            date = sf.parse(time);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        BlobByDate blobByDate = new BlobByDate(date,blobMapper.selectBlobsByDate(DateUtil.getYearMonth(date)));
+        return blobByDate;
     }
 }

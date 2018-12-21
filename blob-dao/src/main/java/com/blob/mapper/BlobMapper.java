@@ -1,6 +1,7 @@
 package com.blob.mapper;
 
 import com.blob.entity.Blob;
+import com.blob.entity.BlobByDate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,4 +56,22 @@ public interface BlobMapper {
     * @return void
     **/
     void blobAccessIncrease(Long id);
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 按時間來查詢博客列表(月和年) 仅有id title 和 time
+    * @Date 15:34 2018-12-20
+    * @Param [date]
+    * @return java.util.List<com.blob.entity.Blob>
+    **/
+    List<Blob> selectBlobsByDate(Integer date);
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 博客日期以及所对应的博客数量
+    * @Date 17:04 2018-12-20
+    * @Param []
+    * @return com.blob.entity.BlobByDate
+    **/
+    Blob selectBlobsCountByDate();
 }

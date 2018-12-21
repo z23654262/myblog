@@ -61,12 +61,41 @@
       <result property="tagDetail" column="tag_detail"></result>
     </collection>
   </resultMap>
+  <resultMap id="ResultBlobByDate" type="blob">
+    <id property="blobId" column="blob_id" ></id>
+    <result property="blobTitle" column="blob_title" ></result>
+    <result  property="blobTime" column="blob_time"></result>
+  </resultMap>
+  <resultMap id="ResultBlobCountByDate" type="blob">
+    <collection property="blobByDates" ofType="blobByDate">
+      <result property="blobDate" column="blob_date"></result>
+      <result  property="blobCount" column="blob_count"></result>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List" >
     blob_id, blob_title, blob_summary, blob_time, blob_category_id, istop, user_id
   </sql>
   <sql id="Blob_Column_List" >
     blob_detail
   </sql>
+  <select id="selectBlobsCountByDate" resultMap="ResultBlobCountByDate">
+    select
+    `blob`.blob_time as blob_date,
+    count(*) blob_count
+    FROM `blob`
+    GROUP BY DATE_FORMAT(`blob`.blob_time,'%Y-%m')
+    ORDER BY `blob`.blob_time desc
+  </select>
+  <select id="selectBlobsByDate" parameterType="int" resultMap="ResultBlobByDate">
+    SELECT
+	`blob`.blob_id,
+    `blob`.blob_title,
+	`blob`.blob_time
+    FROM
+    `blob`
+    where  DATE_FORMAT(`blob`.blob_time,'%Y%m') like #{date}
+    ORDER BY `blob`.blob_time desc
+  </select>
   <select id="selectBlobDetailById" parameterType="long" resultMap="BlobDetailResult">
     SELECT
     `blob`.blob_id,

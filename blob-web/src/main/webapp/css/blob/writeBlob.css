@@ -26,6 +26,7 @@
 	border: 1px solid #e1e1e1;
 	font-size: 14px;
 	padding-left: 10px;
+	border-radius: 4px;
 }
 .blob-meta-btn{
 	display: block;

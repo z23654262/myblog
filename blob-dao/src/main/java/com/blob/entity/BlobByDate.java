@@ -13,7 +13,17 @@ import java.util.List;
 public class BlobByDate {
     private Date blobDate;
 
+    private Integer blobCount;
+
     private List<Blob> blobList;
+
+    public Integer getBlobCount() {
+        return blobCount;
+    }
+
+    public void setBlobCount(Integer blobCount) {
+        this.blobCount = blobCount;
+    }
 
     @JsonFormat(pattern = "yyyy年MM月")
     public Date getBlobDate() {
@@ -36,7 +46,16 @@ public class BlobByDate {
     public String toString() {
         return "BlobByDate{" +
                 "blobDate=" + blobDate +
+                ", blobCount=" + blobCount +
                 ", blobList=" + blobList +
                 '}';
+    }
+
+    public BlobByDate(Date blobDate, List<Blob> blobList) {
+        this.blobDate = blobDate;
+        this.blobList = blobList;
+    }
+
+    public BlobByDate() {
     }
 }
