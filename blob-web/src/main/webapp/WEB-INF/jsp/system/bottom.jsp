@@ -6,10 +6,12 @@
                 <div class="friend-link">
                     <h3><span class="glyphicon glyphicon-paperclip"></span>友情链接</h3>
                     <ul class="link-list">
-                        <li><a href="javascript:void(0)">友链1</a></li>
-                        <li><a href="javascript:void(0)">友链2</a></li>
-                        <li><a href="javascript:void(0)">友链3</a></li>
-                        <li><a href="javascript:void(0)">友链4</a></li>
+                        <li><a href="http://www.baidu.com" target="_blank">百度</a></li>
+                        <li><a href="http://www.bootcss.com" target="_blank">bootstrap</a></li>
+                        <li><a href="http://www.youtube.com" target="_blank">YouTuBe</a></li>
+                        <li><a href="http://www.facebook.com" target="_blank">FaceBook</a></li>
+                        <li><a href="http://www.glyphicons.com" target="_blank">Glyphicons</a></li>
+                        <li><a href="http://github.com/z93478462/myblog" target="_blank">Fork me in GitHub</a></li>
                     </ul>
                 </div>
             </div>

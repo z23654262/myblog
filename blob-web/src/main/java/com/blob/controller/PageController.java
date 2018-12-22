@@ -86,4 +86,16 @@ public class PageController {
     public String toAboutSite(){
         return "system/aboutSite";
     }
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 跳转到登录界面
+    * @Date 12:57 2018-12-22
+    * @Param []
+    * @return java.lang.String
+    **/
+    @RequestMapping(value = "toLogin",method = RequestMethod.GET)
+    public String toLogin(){
+        return "system/login";
+    }
 }

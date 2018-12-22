@@ -15,13 +15,27 @@ var editor = new Simditor({
 	            connectionCount: 1,
 	            leaveConfirm: '正在上传文件'
     },
-	success: function(success){
-		alert(success);
-	},
-	error:function () {
-		alert('文件上传失败');
-    }
+	success: function(data){
+		console.log(data)
+	}
 });
+var file= new Array();
+var filecount = 0;
+
+this.editor.uploader.on('uploadsuccess', (function() {
+    return function(e, file, result) {
+        filecount++;
+        alert(filecount);
+    };
+})(this));
+
+
+
+
+
+
+
+
 $(document).on("blur", "#blob-detail-content", function() {
     var content = $(".simditor-body").html();
     $("#blobDetail").val(content);

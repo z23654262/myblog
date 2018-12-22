@@ -125,5 +125,15 @@ public class BlobController {
         return blobService.getBlobsByDate();
     }
 
-
+    /***
+    * @Author zhangshuaifei
+    * @Description 写博客后跳转到主页
+    * @Date 11:28 2018-12-22
+    * @Param [blob]
+    * @return java.lang.String
+    **/
+    @RequestMapping(value = "addBlob",method = RequestMethod.POST)
+    public String addBlob(Blob blob){
+        return "redirect:index";
+    }
 }

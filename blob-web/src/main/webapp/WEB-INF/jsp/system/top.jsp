@@ -45,6 +45,11 @@
                             关于
                         </a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/toLogin" class="webkit">
+                            这是登录
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="small-search">

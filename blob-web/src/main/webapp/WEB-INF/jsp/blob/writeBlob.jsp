@@ -48,11 +48,11 @@
     <form action="" method="post">
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">标题:</h2>
-            <input type="text" name="blobTitle" id="blob-title" class="blob-meta-text"/>
+            <input type="text" name="blobTitle" id="blob-title" placeholder="请输入博客的标题" class="blob-meta-text"/>
         </div>
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">简介:</h2>
-            <input type="text" name="blobTitle" id="blob-summary" class="blob-meta-text"/>
+            <input type="text" name="blobTitle" id="blob-summary" placeholder="请输入博客的简介" class="blob-meta-text"/>
         </div>
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">类别:</h2>
