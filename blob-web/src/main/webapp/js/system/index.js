@@ -1,5 +1,101 @@
 $(function(){
+    var curWwwPath=window.document.location.href;
+//获取主机地址之后的目录如：/chenThree/jspPage/pages/projectImplementation.html
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
+//获取主机地址，如： http://localhost:8080/chenThree
     var contextPath = window.location.pathname.split("/")[1];
+    var webPath = localhostPaht+"/"+contextPath;
+    /*用户是否登录*/
+    function init_nav() {
+        var small_nav = $('#small-nav');
+        var nav_list = $('#nav-list');
+        small_nav.empty();
+        nav_list.empty();
+        $.ajax({
+            type:"post",
+            url:"/"+contextPath+"/getSessionUser",
+            success:function (result) {
+                var nav_context = "";
+                var small_context = "";
+                if(result.msg=='false'){
+                    nav_context += "<a href=\""+webPath+"/toLogin\" class=\"webkit\">\n登录\n</a>";
+                    small_context +="<li>\n<a href=\""+webPath+"/toLogin\">登录</a>\n</li>";
+                }else{
+                    nav_context += " <a href=\"javascript:void(0)\" class=\"webkit\">\n" +
+                        "                <img src=\"img/userHead/"+result.user.userImageUrl+"\" class=\"login-user\"/>\n" +result.user.userName+
+                        "            </a>\n" +
+                        "            <a href=\"javascript:void(0)\" class=\"webkit logout\" >\n" +
+                        "                登出\n" +
+                        "            </a>";
+                    small_context += "<li>\n" +
+                        "                        <a href=\"javascript:void(0)\" class=\"webkit\"><img src=\"img/userHead/"+result.user.userImageUrl+"\" class=\"login-user\"/>"+result.user.userName+"</a>\n"+
+                        "                    </li>\n" +
+                        "                    <li>\n" +
+                        "                        <a href=\"javascript:void(0)\" class=\"logout\">登出</a>\n" +
+                        "                    </li>";
+                }
+                var nav_login = $("<a href=\""+webPath+"/index\" class=\"webkit\">首页</a>\n" +
+                    "            <a href=\""+webPath+"/chooseCategory\" class=\"webkit\">类别</a>\n" +
+                    "            <a href=\""+webPath+"/archivesByDate\" class=\"webkit\">日期归档</a>\n" +
+                    "            <a href=\""+webPath+"/writeBlob\" class=\"webkit\">\n" +
+                    "\t\t\t\t\t\t<span class=\"glyphicon glyphicon-pencil\">\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t</span> 写博客\n" +
+                    "            </a>\n" +
+                    "            <a href=\""+webPath+"/aboutSite\" class=\"webkit\" id=\"nav-last\">\n" +
+                    "                关于\n" +
+                    "            </a>\n"  +nav_context+
+                    "            <span class=\"search-icon glyphicon glyphicon-search hidden-xs hidden-sm cursor\">\n</span>");
+                var small_login = $(small_context+"<li>\n" +
+                    "                        <a href=\""+webPath+"\" class=\"webkit\">首页</a>\n" +
+                    "                    </li>\n" +
+                    "                    <li>\n" +
+                    "                        <a href=\""+webPath+"/chooseCategory\" class=\"webkit\">类别</a>\n" +
+                    "                    </li>\n" +
+                    "                    <li>\n" +
+                    "                        <a href=\""+webPath+"/archivesByDate\" class=\"webkit\">日期归档</a>\n" +
+                    "                    </li>\n" +
+                    "                    <li>\n" +
+                    "                        <a href=\""+webPath+"/writeBlob\" class=\"webkit\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-pencil\">\n" +
+                    "\t\t\t\t\t\t\t\t\t</span> 写博客\n" +
+                    "                        </a>\n" +
+                    "                    </li>\n" +
+                    "                    <li>\n" +
+                    "                        <a href=\""+webPath+"/aboutSite\" class=\"webkit\">\n" +
+                    "                            关于\n" +
+                    "                        </a>\n" +
+                    "                    </li>");
+                nav_list.append(nav_login);
+                small_nav.append(small_login);
+            }
+        });
+    }
+    /*用户是否登录*/
+    init_nav();
+
+    /*用户登出*/
+    function userlogout(){
+        if(confirm("确定要登出吗")){
+            $.ajax({
+                type:"post",
+                url:"/"+contextPath+"/userLogout",
+                success:function (result) {
+                    init_nav();
+                }
+            })
+        }
+    }
+    $('.nav-container').on("click",".logout",function () {
+        userlogout();
+    });
+    /*用户登出*/
+
+
+
+
     /*鼠标下滑导航栏隐藏*/
     var new_scroll_position = 0;
     var last_scroll_position;
@@ -12,6 +108,7 @@ $(function(){
             // header.removeClass('slideDown').addClass('slideUp');
             header.removeClass('slideDown');
             header.addClass('slideUp');
+            $('#small-nav').fadeOut(200);
             // Scrolling up
         }else if($(window).scrollTop()<120){
             header.removeClass('slideUp');
@@ -41,6 +138,16 @@ $(function(){
     });
 
     var small_nav_a = $('#small-nav').children('li');
+    $('#small-nav').on("click","li",function () {
+        event.stopPropagation();
+    })
+    $('#small-nav').on("click","li a",function () {
+        if($(this).hasClass('logout')){
+            userlogout();
+        }else{
+            event.stopPropagation();
+        }
+    })
     $(small_nav_a).each(function(i,n){
         $(n).click(function(){
             event.stopPropagation();
@@ -255,5 +362,7 @@ $(function(){
         ico_click(this,$('#pic-list'));
     });
     /**/
+
+
 });
 

@@ -20,11 +20,28 @@
       <arg column="user_level" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
+  <resultMap id="ResultUser" type="user">
+    <id property="userId" column="user_id" />
+    <result property="userName" column="user_name" />
+    <result property="userPwd" column="user_pwd" />
+    <result property="userLevel" column="user_level" />
+    <result property="userImageUrl" column="user_image_url" />
+  </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, user_pwd, user_phone, user_sex, user_qq, user_address, user_birthday, 
     user_description, user_image_url, user_school, user_weibo, user_says, user_register_time, 
     user_level
   </sql>
+  <select id="selectUserByName" parameterType="string" resultMap="ResultUser">
+    select
+    `user`.user_id,
+    `user`.user_name,
+    `user`.user_pwd,
+    `user`.user_level,
+    `user`.user_image_url
+    from `user`
+    where `user`.user_name = #{name}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

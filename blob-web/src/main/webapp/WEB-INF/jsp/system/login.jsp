@@ -22,11 +22,13 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <!--首页Js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/system/index.js"></script>
+    <!--首页Js-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/user/checkUser.js"></script>
     <!--bootstrap的js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="login-container">
+<div class="login-container movein">
     <div class="col-lg-12">
         <div class="login-header">
             <img src="img/system/MyBlob-logo2.0.png"/>
@@ -36,15 +38,18 @@
         <form action="" method="post">
             <div class="login-main">
                 <h1>欢迎登录</h1>
+                <div class="login-wrongmessage" id="login-wrongmessage">
+                    <p>此处是错误信息</p>
+                </div>
                 <div class="login-box">
-                    <label for="username_field" class="login-label">用户名或邮箱</label>
-                    <input type="text" name="username" id="username_field" autocomplete="off" class="login-text" required="required"/>
-                    <label for="password_field" class="login-label">
+                    <label for="username" class="login-label">用户名或邮箱</label>
+                    <input type="text" name="username" id="username" autocomplete="off" class="login-text" required="required"/>
+                    <label for="password" class="login-label">
                         密码
                         <a href="">忘记密码?</a>
                     </label>
-                    <input type="password" name="password" id="password_field" autocomplete="off" class="login-text" required="required"/>
-                    <input type="submit" value="登录" class="login-submit"/>
+                    <input type="password" name="password" id="password" autocomplete="off" class="login-text" required="required"/>
+                    <input type="button" value="登录" class="login-submit" id="login-btn"/>
                 </div>
                 <p class="no-account">
                     你是新来的吗？

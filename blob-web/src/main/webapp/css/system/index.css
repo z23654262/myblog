@@ -23,14 +23,14 @@ body{
 	width: 120px;
 	height: 20px;
 	float: left;
-	margin-top: 20px;
+	margin: 25px 0;
 }
 .nav-list{
 	display: inline-block;
+	line-height: 70px;
 	float: right !important;
 	width: auto;
 	font-size: 14px;
-	margin: 27px 0 0 0;
 }
 .nav-list>a{
 	color: #333333;
@@ -43,6 +43,13 @@ body{
 }
 .nav-list>a:focus{
 	text-decoration: none;
+}
+.login-user{
+	width: 34px;
+	height: 34px;
+	border-radius: 100%;
+	border: 1px solid #e1e1e1;
+	margin-right: 6px;
 }
 .small-list{
 	float: right;

@@ -22,7 +22,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <!--首页Js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/system/index.js"></script>
-    <!--首页Js-->
+    <!-博客Js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/blob/blobJson.js"></script>
     <!--bootstrap的js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>

@@ -26,8 +26,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <!--首页Js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/system/index.js"></script>
-    <!--首页Json填充-->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/system/indexJson.js"></script>
     <!--bootstrap的js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
     <!--富文本编辑器的js-->
