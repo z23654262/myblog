@@ -7,6 +7,11 @@ public class BlobTag {
 
     private String tagDetail;
 
+    public BlobTag(Long blobId, String tagDetail) {
+        this.blobId = blobId;
+        this.tagDetail = tagDetail;
+    }
+
     public BlobTag(Long tagId, Long blobId, String tagDetail) {
         this.tagId = tagId;
         this.blobId = blobId;

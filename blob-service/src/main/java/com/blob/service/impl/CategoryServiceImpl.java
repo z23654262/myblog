@@ -28,4 +28,8 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.selectAllCategory();
     }
 
+    @Override
+    public List<Category> getCategoryWithBlobCount() {
+        return categoryMapper.selectCategoryWithBlobCount();
+    }
 }

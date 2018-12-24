@@ -74,4 +74,13 @@ public interface BlobMapper {
     * @return com.blob.entity.BlobByDate
     **/
     Blob selectBlobsCountByDate();
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 写入博客信息
+    * @Date 15:10 2018-12-23
+    * @Param [blob]
+    * @return void
+    **/
+    void insertBlob(Blob blob);
 }

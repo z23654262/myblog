@@ -109,4 +109,13 @@ public interface BlobService {
     * @return java.util.List<com.blob.entity.Blob>
     **/
     public BlobByDate getBlobsByYearAndMonth(String time);
+
+    /***
+    * @Author zhangshuaifei
+    * @Description 写入博客信息
+    * @Date 15:11 2018-12-23
+    * @Param [blob]
+    * @return void
+    **/
+    public void insertBlob(Blob blob);
 }

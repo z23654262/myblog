@@ -2,6 +2,7 @@ package com.blob.controller;
 
 import com.blob.entity.User;
 import com.blob.service.UserService;
+import com.blob.util.LoginUserMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,7 @@ public class UserController {
             map.put("msg","success");
             map.put("user",user);
             session.setAttribute("user",user);
+            LoginUserMap.setLoginUsers(user.getUserId(),session.getId());
         }
         return map;
     }

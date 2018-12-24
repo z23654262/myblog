@@ -164,6 +164,18 @@
     delete from blob
     where blob_id = #{blobId,jdbcType=BIGINT}
   </delete>
+  <insert id="insertBlob" parameterType="blob" useGeneratedKeys="true" keyProperty="blobId">
+    insert into `blob`
+    (blob_title, blob_summary, blob_detail, blob_category_id, user_id)
+    values
+    (
+    #{blobTitle},
+    #{blobSummary},
+    #{blobDetail},
+    #{blobCategoryId},
+    #{user.userId}
+    )
+  </insert>
   <insert id="insert" parameterType="com.blob.entity.Blob" >
     insert into blob (blob_id, blob_title, blob_summary, 
       blob_time, blob_category_id, istop, 

@@ -24,6 +24,12 @@ public class CategoryController {
         return  categoryService.getCategoryBlobs(name);
     }
 
+    @RequestMapping(value = "getCategoryBlobsCount",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Category> getCategoryBlobsCount(){
+        return categoryService.getCategoryWithBlobCount();
+    }
+
     @RequestMapping(value = "getAllCategory",method = RequestMethod.POST)
     @ResponseBody
     public List<Category> getAllCategory(){

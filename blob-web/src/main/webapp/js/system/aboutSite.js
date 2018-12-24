@@ -11,18 +11,13 @@ $(function() {
 
     $.ajax({
         type: "post",
-        url: "/" + contextPath + "/getCategoryDetail",
-        data: "name=" + "%25%25",
+        url: "/" + contextPath + "/getCategoryBlobsCount",
         success: function (result) {
-        	var blob_total = 0;
             var site_blob_count_data = new Array();
-        	for(var i=0;i<result.length;i++){
-                blob_total += result[i].blobList.length;
-			}
             for(var i=0;i<result.length;i++){
                 site_blob_count_data[i] = new Array();
                 site_blob_count_data[i][0] = result[i].categoryDetail;
-                site_blob_count_data[i][1] = result[i].blobList.length / blob_total * 100;
+                site_blob_count_data[i][1] = result[i].blobCount;
             }
             $('#blob-chart').highcharts({
                 chart: {
@@ -62,7 +57,7 @@ $(function() {
 
                 },
                 series: [{
-                    name: '博客数量占比',
+                    name: '博客数量',
                     data: site_blob_count_data
                 }]
             });

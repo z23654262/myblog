@@ -31,7 +31,7 @@
 <div class="login-container movein">
     <div class="col-lg-12">
         <div class="login-header">
-            <img src="img/system/MyBlob-logo2.0.png"/>
+            <img src="${pageContext.request.contextPath}/img/system/MyBlob-logo2.0.png"/>
         </div>
     </div>
     <div class="col-lg-12">

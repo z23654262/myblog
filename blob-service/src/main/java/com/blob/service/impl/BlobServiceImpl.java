@@ -178,4 +178,9 @@ public class BlobServiceImpl implements BlobService {
         BlobByDate blobByDate = new BlobByDate(date,blobMapper.selectBlobsByDate(DateUtil.getYearMonth(date)));
         return blobByDate;
     }
+
+    @Override
+    public void insertBlob(Blob blob) {
+        blobMapper.insertBlob(blob);
+    }
 }

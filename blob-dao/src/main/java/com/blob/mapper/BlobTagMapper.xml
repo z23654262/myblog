@@ -21,6 +21,15 @@
     delete from tag
     where tag_id = #{tagId,jdbcType=BIGINT}
   </delete>
+  <insert id="insertBlobTag" parameterType="blobTag">
+    insert into tag
+    (blob_id, tag_detail)
+    values
+    (
+    #{blobId},
+    #{tagDetail}
+    )
+  </insert>
   <insert id="insert" parameterType="com.blob.entity.BlobTag" >
     insert into tag (tag_id, blob_id, tag_detail
       )

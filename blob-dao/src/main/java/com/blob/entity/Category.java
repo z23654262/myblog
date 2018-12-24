@@ -9,6 +9,16 @@ public class Category {
 
     private List<Blob> blobList;
 
+    private Integer blobCount;
+
+    public Integer getBlobCount() {
+        return blobCount;
+    }
+
+    public void setBlobCount(Integer blobCount) {
+        this.blobCount = blobCount;
+    }
+
     public List<Blob> getBlobList() {
         return blobList;
     }

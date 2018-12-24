@@ -20,9 +20,27 @@
       <result property="blobTime" column="blob_time"></result>
     </collection>
   </resultMap>
+  <resultMap id="CategoryBlobsCount" type="category">
+    <id property="categoryId" column="category_id"></id>
+    <result property="categoryDetail" column="category_detail"></result>
+    <result property="blobCount" column="count"></result>
+  </resultMap>
   <sql id="Base_Column_List" >
     category_id, category_detail
   </sql>
+  <select id="selectCategoryWithBlobCount" resultMap="CategoryBlobsCount">
+    SELECT
+        category.category_id,
+        category.category_detail,
+        count( category.category_detail ) AS count
+    FROM
+        category
+        INNER JOIN `blob` ON BLOB.blob_category_id = category.category_id
+    GROUP BY
+        category.category_detail
+    ORDER BY
+        count DESC
+  </select>
   <select id="selectAllCategory" resultMap="CategoryResult">
     SELECT
     category.category_id,

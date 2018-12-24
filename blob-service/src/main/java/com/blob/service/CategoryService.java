@@ -22,4 +22,13 @@ public interface CategoryService {
     * @return java.util.List<com.blob.entity.Category>
     **/
     public List<Category> getAllCategory();
+
+    /***
+     * @Author zhangshuaifei
+     * @Description 查询所有类别对应的博客数量
+     * @Date 16:25 2018-12-23
+     * @Param
+     * @return
+     **/
+    public List<Category> getCategoryWithBlobCount();
 }

@@ -66,6 +66,8 @@ body{
 	right: 0;
 	background-color: #FFFFFF;
 	display: none;
+	border: 1px solid #e1e1e1;
+	border-top: none;
 }
 .small-list>ul>li{
 	width: 100%;
@@ -178,7 +180,7 @@ body{
 	margin-top: 10px;
 }
 .label-title>a{
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: inherit;
     line-height: 20px;
     word-break: break-all;
@@ -347,15 +349,15 @@ body{
 	transform: scale(1.03);
 }
 .post-access{
-	float: right;
-	margin: -50px 0 0 0;
+	display: block;
+	float: left;
+	margin: 10px 0 0 0;
 	color: #df185a;
 	letter-spacing: 1px;
 }
 .post-access>span{
 	float: left;
-	margin: 0 0 0 20px;
-	line-height: 20px;
+	line-height: 18px;
 }
 .post-access>p{
 	float: left;
@@ -455,11 +457,12 @@ body{
 }
 .footer-nav-item h3{
 	letter-spacing: 4px;
-	font-size: 18px;
+	font-size: 22px;
+	font-weight: 100;
 }
 .footer-nav-item h3>span{
 	color: #df185a;
-	font-size: 14px;
+	font-size: 16px;
 	margin-right: 4px;
 }
 .friend-link{

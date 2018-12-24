@@ -2,7 +2,9 @@ package com.blob.controller;
 
 import com.blob.entity.Blob;
 import com.blob.entity.BlobByDate;
+import com.blob.entity.User;
 import com.blob.service.BlobService;
+import com.blob.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,6 +31,9 @@ import java.util.UUID;
 public class BlobController {
     @Autowired
     private BlobService blobService;
+
+    @Autowired
+    private TagService tagService;
 
 
     /***
@@ -133,7 +139,10 @@ public class BlobController {
     * @return java.lang.String
     **/
     @RequestMapping(value = "addBlob",method = RequestMethod.POST)
-    public String addBlob(Blob blob){
+    public String addBlob(Blob blob, String tagName, HttpSession session){
+        blob.setUser((User)session.getAttribute("user"));
+        blobService.insertBlob(blob);
+        tagService.insertTag(tagName.split(","),blob.getBlobId());
         return "redirect:index";
     }
 }

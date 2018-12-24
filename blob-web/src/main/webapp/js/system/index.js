@@ -24,13 +24,13 @@ $(function(){
                     small_context +="<li>\n<a href=\""+webPath+"/toLogin\">登录</a>\n</li>";
                 }else{
                     nav_context += " <a href=\"javascript:void(0)\" class=\"webkit\">\n" +
-                        "                <img src=\"img/userHead/"+result.user.userImageUrl+"\" class=\"login-user\"/>\n" +result.user.userName+
+                        "                <img src=\""+webPath+"/img/userHead/"+decodeURI(result.user.userImageUrl)+"\" class=\"login-user\"/>\n" +result.user.userName+
                         "            </a>\n" +
                         "            <a href=\"javascript:void(0)\" class=\"webkit logout\" >\n" +
                         "                登出\n" +
                         "            </a>";
                     small_context += "<li>\n" +
-                        "                        <a href=\"javascript:void(0)\" class=\"webkit\"><img src=\"img/userHead/"+result.user.userImageUrl+"\" class=\"login-user\"/>"+result.user.userName+"</a>\n"+
+                        "                        <a href=\"javascript:void(0)\" class=\"webkit\"><img src=\""+webPath+"/img/userHead/"+decodeURI(result.user.userImageUrl)+"\" class=\"login-user\"/>"+result.user.userName+"</a>\n"+
                         "                    </li>\n" +
                         "                    <li>\n" +
                         "                        <a href=\"javascript:void(0)\" class=\"logout\">登出</a>\n" +

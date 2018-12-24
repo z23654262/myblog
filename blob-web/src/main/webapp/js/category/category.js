@@ -13,8 +13,7 @@ function initChooseCategory() {
     var choose_list = $('#choose-list');
     $.ajax({
         type: "post",
-        url: "/" + contextPath + "/getCategoryDetail",
-        data: "name=" + "%25%25",
+        url: "/" + contextPath + "/getCategoryBlobsCount",
         success: function (result) {
             for (var i = 0; i < result.length; i++) {
                 var choose_item = $("<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">\n" +
@@ -26,7 +25,7 @@ function initChooseCategory() {
                     "                </div>\n" +
                     "                <div class=\"category-count\">\n" +
                     "                    <p>博客数量</p>\n" +
-                    "                    <p>" + result[i].blobList.length + "</p>\n" +
+                    "                    <p>" + result[i].blobCount + "</p>\n" +
                     "                </div>\n" +
                     "            </div>\n" +
                     "        </div>");

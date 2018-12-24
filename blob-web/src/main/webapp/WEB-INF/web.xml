@@ -8,6 +8,9 @@
         <welcome-file>index</welcome-file>
     </welcome-file-list>
     <listener>
+        <listener-class>com.blob.listener.SessionListener</listener-class>
+    </listener>
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <context-param>

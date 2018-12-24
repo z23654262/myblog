@@ -43,28 +43,27 @@
         <span class="glyphicon glyphicon-pencil inline-block"></span>
         <h1 class="inline-block">写博客</h1>
     </div>
-    <form action="" method="post">
+    <form action="${pageContext.request.contextPath}/addBlob" method="post">
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">标题:</h2>
-            <input type="text" name="blobTitle" id="blob-title" placeholder="请输入博客的标题" class="blob-meta-text"/>
+            <input type="text" name="blobTitle" id="blob-title" placeholder="请输入博客的标题" autocomplete="off" class="blob-meta-text"/>
         </div>
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">简介:</h2>
-            <input type="text" name="blobTitle" id="blob-summary" placeholder="请输入博客的简介" class="blob-meta-text"/>
+            <input type="text" name="blobSummary" id="blob-summary" placeholder="请输入博客的简介" autocomplete="off" class="blob-meta-text"/>
         </div>
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">类别:</h2>
-            <select name="" class="blob-meta-text" id="blob-category">
+            <select name="blobCategoryId" class="blob-meta-text" id="blob-category">
             </select>
         </div>
         <div class="blob-meta movein">
             <h2 class="blob-meta-title">标签:</h2>
-            <input type="text" name="tag" id="" placeholder="请输入标签，中间使用“ , ”隔开" class="blob-meta-text"/>
+            <input type="text" name="tagName" id="" placeholder="请输入标签，中间使用“ , ”隔开" autocomplete="off" class="blob-meta-text"/>
         </div>
         <div class="blob-detail movein" id="blob-detail-content">
             <h2 class="blob-meta-title">博客内容:</h2>
             <div class="clearfix">
-
             </div>
             <textarea id="editor" placeholder="Balabala">
 			</textarea>

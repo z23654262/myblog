@@ -27,7 +27,7 @@ $(function () {
             if (result.commentList == null) {
                 comment.append("0评论");
             } else {
-                comment.append(result.commentList.length + "0评论");
+                comment.append(result.commentList.length + "评论");
             }
 
             access.append(result.blobAccess + "次浏览");

@@ -79,7 +79,7 @@ function indexRecommendBlobs(contextPath,index){
                     result[i].blobTime  +
                     "                            </span>\n" +
                     "                            <div class=\"post-access\">\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-eye-open\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-time\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t</span>\n" +
                     "                                <p>\n" +
                     result[i].blobAccess +"浏览"+
